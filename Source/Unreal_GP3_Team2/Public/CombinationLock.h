@@ -78,7 +78,7 @@ public:
     bool CheckValues();
 
     UFUNCTION(BlueprintCallable, Category = "LockFunctions", meta = (DisplayName = "Set Selected Dial"))
-    void SwitchSelectedDial(int32 value);
+    float SwitchSelectedDial(int32 value);
 
     UFUNCTION(BlueprintPure, Category = "LockFunctions", meta = (DisplayName = "Is Any Dial Rotating"))
     bool IsAnyDialAnimating(); 

@@ -167,7 +167,7 @@ int32 ACombinationLock::GetDialValue(UStaticMeshComponent* Dial)
     return FMath::RoundToInt(Normalized / 30.0f) % 12;
 }
 
-void ACombinationLock::SwitchSelectedDial(int32 value)
+float ACombinationLock::SwitchSelectedDial(int32 value)
 {
     SwitchValue = (SwitchValue + value + 5) % 5;
 
@@ -176,28 +176,29 @@ void ACombinationLock::SwitchSelectedDial(int32 value)
     case 0:
         SelectedDial = Dial1;
         UE_LOG(LogTemp, Warning, TEXT("Dial 1 Selected"));
-        break;
+        return -8.0;
 
     case 1:
         SelectedDial = Dial2;
         UE_LOG(LogTemp, Warning, TEXT("Dial 2 Selected"));
-        break;
+        return -4.0;
 
     case 2:
         SelectedDial = Dial3;
         UE_LOG(LogTemp, Warning, TEXT("Dial 3 Selected"));
-        break;
+        return 0.0;
 
     case 3:
         SelectedDial = Dial4;
         UE_LOG(LogTemp, Warning, TEXT("Dial 4 Selected"));
-        break;
+        return 4.0;
 
     case 4:
         SelectedDial = Dial5;
         UE_LOG(LogTemp, Warning, TEXT("Dial 5 Selected"));
-        break;
+        return 8.0;
     }
+    return 0.0;
 }
 
 void ACombinationLock::TriggerEvent()
