@@ -51,12 +51,9 @@ void AItemBase::OnLookExit_Implementation()
 
 }
 
-TArray<EInteractionOptions> AItemBase::GetInteractOptions()
+TArray<FInteractionOption> AItemBase::GetInteractOptions()
 {
-	TArray<EInteractionOptions> options = TArray<EInteractionOptions>();
-	options.Add(EInteractionOptions::NONE);
-
-	return options;
+	return HighlightInteractionOptions;
 }
 
 void AItemBase::Look()

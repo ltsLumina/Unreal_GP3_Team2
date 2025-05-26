@@ -15,8 +15,11 @@ class UNREAL_GP3_TEAM2_API AItem_Interactable : public AItemBase
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Details")
+	TArray<FInteractionOption> InteractionActions;
 
-	virtual TArray<EInteractionOptions> GetInteractOptions() override;
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE TArray<FInteractionOption> GetUserActions() { return InteractionActions; };
 
 	UFUNCTION(BlueprintCallable)
 	void Interact();

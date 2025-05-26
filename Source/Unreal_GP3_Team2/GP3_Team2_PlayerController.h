@@ -48,4 +48,13 @@ private:
 
     UPROPERTY(Transient)
     ULevelStreaming* ActiveLevel;
+
+    UFUNCTION()
+    void StartFade(bool bFadeIn, float Duration = 0.5f);
+
+    ULevelStreaming* PendingDeactivateLevel;
+    ULevelStreaming* PendingActivateLevel;
+    FTimerHandle FadeTimerHandle;
+
+    void OnFadeOutComplete();
 };

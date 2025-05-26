@@ -6,14 +6,21 @@
 
 AGP3_Team2_PlayerController::AGP3_Team2_PlayerController()
 {
-    ActiveLevel = nullptr; // Initialize to avoid undefined behavior
+    ActiveLevel = nullptr;
+    PendingDeactivateLevel = nullptr;
+    PendingActivateLevel = nullptr;
 }
 
 void AGP3_Team2_PlayerController::BeginPlay()
 {
     Super::BeginPlay();
-    GetPawn()->Destroy();
-    //Check for level
+
+    if (GetPawn())
+    {
+        GetPawn()->Destroy();
+    }
+
+    // Check for level
     if (GetWorld()->GetName() == TEXT("StreamWorld"))
     {
         // Load Present level (Present)
@@ -48,12 +55,15 @@ void AGP3_Team2_PlayerController::BeginPlay()
     {
         ACharacter* MyCharacter = Cast<ACharacter>(UGameplayStatics::GetActorOfClass(this, ACharacter::StaticClass()));
 
-        if (APlayerStart * PlayerStart = Cast<APlayerStart>(UGameplayStatics::GetActorOfClass(this, APlayerStart::StaticClass())))
+        if (MyCharacter)
         {
-            MyCharacter->SetActorLocation(PlayerStart->GetActorLocation());
-        }
+            if (APlayerStart* PlayerStart = Cast<APlayerStart>(UGameplayStatics::GetActorOfClass(this, APlayerStart::StaticClass())))
+            {
+                MyCharacter->SetActorLocation(PlayerStart->GetActorLocation());
+            }
 
-        Possess(MyCharacter);
+            Possess(MyCharacter);
+        }
     }
 }
 
@@ -83,6 +93,28 @@ ULevelStreaming* AGP3_Team2_PlayerController::LoadStreamingLevel(UObject* WorldC
     return StreamingLevel;
 }
 
+void AGP3_Team2_PlayerController::StartFade(bool bFadeIn, float Duration)
+{
+    if (!IsValid(this))
+    {
+        UE_LOG(LogTemp, Error, TEXT("StartFade: PlayerController is invalid"));
+        return;
+    }
+
+    FColor FadeColor = FColor::Black;
+
+    if (bFadeIn)
+    {
+        // Fade IN: from fully opaque black to transparent (visible)
+        ClientSetCameraFade(true, FadeColor, FVector2D(1.f, 0.f), Duration, false, false);
+    }
+    else
+    {
+        // Fade OUT: from transparent to fully opaque black
+        ClientSetCameraFade(true, FadeColor, FVector2D(0.f, 1.f), Duration, false, false);
+    }
+}
+
 void AGP3_Team2_PlayerController::ChangeActiveWorld(ULevelStreaming* InActivate, ULevelStreaming* Activate)
 {
     if (!InActivate || !Activate)
@@ -91,12 +123,30 @@ void AGP3_Team2_PlayerController::ChangeActiveWorld(ULevelStreaming* InActivate,
         return;
     }
 
-    // Deactivate the current level
-    if (ULevel* LoadedLevel = InActivate->GetLoadedLevel())
-    {
-        InActivate->SetShouldBeVisible(false);
+    PendingDeactivateLevel = InActivate;
+    PendingActivateLevel = Activate;
 
-        UE_LOG(LogTemp, Log, TEXT("Deactivating level: %s"), *InActivate->GetFName().ToString());
+    // Fade out first
+    StartFade(false, 0.5f);
+
+    // Set timer to delay actual swap until fade completes
+    GetWorld()->GetTimerManager().SetTimer(FadeTimerHandle, this, &AGP3_Team2_PlayerController::OnFadeOutComplete, 0.6f, false);
+}
+
+void AGP3_Team2_PlayerController::OnFadeOutComplete()
+{
+    if (!PendingDeactivateLevel || !PendingActivateLevel)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Pending levels are invalid"));
+        return;
+    }
+
+    // Deactivate old level
+    if (ULevel* LoadedLevel = PendingDeactivateLevel->GetLoadedLevel())
+    {
+        PendingDeactivateLevel->SetShouldBeVisible(false);
+
+        UE_LOG(LogTemp, Log, TEXT("Deactivating level: %s"), *PendingDeactivateLevel->GetFName().ToString());
 
         for (AActor* Actor : LoadedLevel->Actors)
         {
@@ -111,16 +161,25 @@ void AGP3_Team2_PlayerController::ChangeActiveWorld(ULevelStreaming* InActivate,
         }
     }
 
-    //Activate the new level
-    if (ULevel* LoadedLevel = Activate->GetLoadedLevel())
+    // Activate new level
+    if (ULevel* LoadedLevel = PendingActivateLevel->GetLoadedLevel())
     {
-        Activate->SetShouldBeVisible(true);
-        UE_LOG(LogTemp, Log, TEXT("Activating level: %s"), *Activate->GetFName().ToString());
+        PendingActivateLevel->SetShouldBeVisible(true);
+        UE_LOG(LogTemp, Log, TEXT("Activating level: %s"), *PendingActivateLevel->GetFName().ToString());
+
+        StartFade(true, 1.0f); // Fade in
     }
     else
     {
-        UE_LOG(LogTemp, Warning, TEXT("Level not yet loaded: %s"), *Activate->GetFName().ToString());
+        UE_LOG(LogTemp, Warning, TEXT("Level not yet loaded: %s"), *PendingActivateLevel->GetFName().ToString());
+        StartFade(true, 1.0f); // Ensure fade in anyway
     }
+
+    // Clear pending levels and timer
+    PendingDeactivateLevel = nullptr;
+    PendingActivateLevel = nullptr;
+
+    GetWorld()->GetTimerManager().ClearTimer(FadeTimerHandle);
 }
 
 void AGP3_Team2_PlayerController::SwapActiveLevel()
@@ -245,7 +304,7 @@ void AGP3_Team2_PlayerController::PastLevelShown()
                     }
                     else
                     {
-                        UE_LOG(LogTemp, Warning, TEXT("Multiple characters found in Present level"));
+                        UE_LOG(LogTemp, Warning, TEXT("Multiple characters found in Past level"));
                     }
                 }
             }
@@ -253,7 +312,7 @@ void AGP3_Team2_PlayerController::PastLevelShown()
 
         if (TargetCharacter && GetPawn() != TargetCharacter)
         {
-            UE_LOG(LogTemp, Log, TEXT("Possessing character in Present: %s"), *TargetCharacter->GetName());
+            UE_LOG(LogTemp, Log, TEXT("Possessing character in Past: %s"), *TargetCharacter->GetName());
             Possess(TargetCharacter);
         }
         UE_LOG(LogTemp, Log, TEXT("Past level is now visible: %s"), *Past->GetFName().ToString());

@@ -6,13 +6,25 @@
 #include "GameFramework/Actor.h"
 #include "ItemBase.generated.h"
 
-UENUM()
+UENUM(BlueprintType)
 enum class EInteractionOptions : uint8
 {
-	NONE = 0, PICKUP = 1, INTERACT = 2, STASH = 3
+	NONE = 0, PICKUP = 1, INTERACT = 2, STASH = 3, READ = 4
 };
 
+USTRUCT(BlueprintType)
+struct FInteractionOption
+{
+	GENERATED_BODY()
 
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString InteractionName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UTexture2D> ControlImage;
+};
 
 UCLASS()
 class UNREAL_GP3_TEAM2_API AItemBase : public APawn
@@ -34,6 +46,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Details")
 	int32 ItemID;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Details")
+	TArray<FInteractionOption> HighlightInteractionOptions;
 
 protected:
 	// Called when the game starts or when spawned
@@ -62,7 +77,9 @@ public:
 	void OnLookExit_Implementation();
 
 	UFUNCTION(BlueprintCallable)
-	virtual TArray<EInteractionOptions> GetInteractOptions();
+	virtual TArray<FInteractionOption> GetInteractOptions();
+
+
 
 	UFUNCTION()
 	virtual void Look();

@@ -15,6 +15,4 @@ class UNREAL_GP3_TEAM2_API AItem_Pickup : public AItemBase
 	GENERATED_BODY()
 	
 
-public:
-	virtual TArray<EInteractionOptions> GetInteractOptions() override;
 };

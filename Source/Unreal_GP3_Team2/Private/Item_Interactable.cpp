@@ -3,14 +3,6 @@
 
 #include "Item_Interactable.h"
 
-TArray<EInteractionOptions> AItem_Interactable::GetInteractOptions()
-{
-	TArray<EInteractionOptions> options = TArray<EInteractionOptions>();
-	options.Add(EInteractionOptions::INTERACT);
-
-	return options;
-}
-
 void AItem_Interactable::Interact()
 {
 	OnInteract();
