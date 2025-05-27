@@ -50,6 +50,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Details")
 	TArray<FInteractionOption> HighlightInteractionOptions;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Details")
+	UStaticMesh* ItemInspectionMesh;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
