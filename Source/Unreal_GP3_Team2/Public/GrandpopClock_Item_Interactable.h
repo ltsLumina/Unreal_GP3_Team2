@@ -51,7 +51,7 @@ protected:
     float MaxSwingAngle = 4.0f;
 
     UPROPERTY(EditAnywhere, Category = "Clock")
-    float RotationInterpSpeed = 5.0f;
+    float RotationInterpSpeed = 0.1f;
 
     UPROPERTY()
     bool PresentWorld;

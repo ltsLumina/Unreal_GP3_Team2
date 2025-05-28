@@ -12,7 +12,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8fd23cbf-5b59-43c5-98ce-907e6c90c9ba" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Content/DefaultStuff/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/DefaultStuff/FirstPerson/Blueprints/BP_FirstPersonCharacter.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Design/Blueprints/Piano/BP_PianoTake3.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Design/Blueprints/Piano/BP_Playable_Piano.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Design/Blueprints/Piano/Old/BP_PianoNEW.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Design/Blueprints/Piano/Old/BP_Piano_DEPRECATED_NEW.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Design/Blueprints/Piano/Old/BP_Piano_DEPRECATED_OLD.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Levels/L_Blockout/0/3C/LFY2Q7ZE6BHVCK3T73RX1V.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Levels/L_Blockout/1/ON/XV5AR3QF1RKFX6OVS3W4Y4.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/CombinationLock/BP_CombinationLock.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/CombinationLock/BP_CombinationLock.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_BedEndChest.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Interactables/BP_BedEndChest.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Design/Blueprints/Piano/BP_Piano.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Design/Blueprints/Piano/BP_Piano.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Design/Blueprints/Piano/Old/BP_Piano_DEPRECATED.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/StreamWorld.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/StreamWorld.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Alex_Blockout/L_Past/8/8J/8VNUP7WSRE6837DJGNGJTL.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Alex_Blockout/L_Past/8/8J/8VNUP7WSRE6837DJGNGJTL.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Alex_Blockout/L_PastFIXED/E/XB/WP7UCMXY9OW3E942040PTF.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Alex_Blockout/L_PastFIXED/E/XB/WP7UCMXY9OW3E942040PTF.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Alex_Blockout/L_PastNew2/9/MR/44VE7DCSODBI8OJKGJA9QT.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Alex_Blockout/L_PastNew2/9/MR/44VE7DCSODBI8OJKGJA9QT.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Alex_Blockout/L_PastNew3/7/O6/U0XT55ETRC6GO2FCC3Q561.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Alex_Blockout/L_PastNew3/7/O6/U0XT55ETRC6GO2FCC3Q561.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Levels/L_Blockout/4/2Z/MTA7EZ2A5PN0FZRI5V2QI4.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Levels/L_Blockout/4/2Z/MTA7EZ2A5PN0FZRI5V2QI4.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Levels/L_Blockout/6/LB/1S7E0CKPM4RUB632HQ7GBZ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Levels/L_Blockout/E/ZM/IRHKVLGGYU5UG44E450URB.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/Maps/Levels/L_Blockout/E/ZM/IRHKVLGGYU5UG44E450URB.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Unreal_GP3_Team2/GP3_Team2_PlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Unreal_GP3_Team2/GP3_Team2_PlayerController.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +51,7 @@
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Private/Components/CharacterMovementComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Navmesh/Public/Detour/DetourNavLinkBuilder.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Unreal_GP3_Team2/GP3_Team2_PlayerController.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Unreal_GP3_Team2/GP3_Team2_PlayerController.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Unreal_GP3_Team2/Private/AC_InteractionSystemPlayer.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Unreal_GP3_Team2/Private/CombinationLock.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Unreal_GP3_Team2/Private/InventoryComponent.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -77,16 +97,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "C/C++ Project.Unreal_GP3_Team2.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "do_not_show_solution_notification": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "settings.editor.selected.configurable": "CppUnrealEngineOptionsId"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;C/C++ Project.Unreal_GP3_Team2.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;do_not_show_solution_notification&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CppUnrealEngineOptionsId&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="C/C++ Project.Unreal_GP3_Team2">
     <configuration name="UE5" type="CppProject" factoryName="C++ Project">
       <option name="DEFAULT_PROJECT_PATH" value="$PROJECT_DIR$/Intermediate/ProjectFiles/UE5.vcxproj" />
@@ -236,6 +256,7 @@
       <workItem from="1748278866177" duration="1109000" />
       <workItem from="1748280209121" duration="999000" />
       <workItem from="1748432462150" duration="573000" />
+      <workItem from="1748437429143" duration="1257000" />
     </task>
     <servers />
   </component>

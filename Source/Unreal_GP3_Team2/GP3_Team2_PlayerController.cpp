@@ -24,7 +24,7 @@ void AGP3_Team2_PlayerController::BeginPlay()
     if (GetWorld()->GetName() == TEXT("StreamWorld"))
     {
         // Load Present level (Present)
-        Present = LoadStreamingLevel(this, FName("L_Present"), true);
+        Present = LoadStreamingLevel(this, FName("L_Present_Vecna"), true);
         if (Present)
         {
             Present->OnLevelLoaded.AddDynamic(this, &AGP3_Team2_PlayerController::PresentLoaded);
@@ -36,7 +36,7 @@ void AGP3_Team2_PlayerController::BeginPlay()
         }
 
         // Load Past level (Past)
-        Past = LoadStreamingLevel(this, FName("L_Past"), false);
+        Past = LoadStreamingLevel(this, FName("L_Past_Vecna"), false);
         if (Past)
         {
             Past->OnLevelLoaded.AddDynamic(this, &AGP3_Team2_PlayerController::PastLoaded);

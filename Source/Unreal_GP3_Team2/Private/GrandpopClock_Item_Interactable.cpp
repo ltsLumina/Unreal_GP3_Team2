@@ -47,7 +47,7 @@ void AGrandpopClock_Item_Interactable::BeginPlay()
         Pendulum->SetVisibility(false);
         Pendulum->SetComponentTickEnabled(false);
         ItemName = "Brooken Clock";
-        SetTimeInRotation(8, 0, FirstTime, SecondTime);
+        SetTimeInRotation(6, 0, FirstTime, SecondTime);
         BigPointer->SetRelativeRotation(FRotator(SecondTime, 0.f, 0.f));
         SmallPointer->SetRelativeRotation(FRotator(FirstTime, 0.f, 0.f));
     }
@@ -85,7 +85,7 @@ void AGrandpopClock_Item_Interactable::Tick(float DeltaTime)
     }
     if (PresentWorld && bShouldRotate)
     {
-        SetTimeInRotation(6, 45, FirstTime, SecondTime);
+        SetTimeInRotation(8, 45, FirstTime, SecondTime);
         SetTargetRotation(DeltaTime, FirstTime, SecondTime);
     }
 }
@@ -137,7 +137,7 @@ void AGrandpopClock_Item_Interactable::SetTargetRotation(float DeltaTime, float 
     bool bHourDone = FMath::Abs(HourDelta) < Threshold;
     bool bMinuteDone = FMath::Abs(MinuteDelta) < Threshold;
 
-    UE_LOG(LogTemp, Warning, TEXT("Hour diff: %f, Minute diff: %f"), HourDelta, MinuteDelta);
+    //UE_LOG(LogTemp, Warning, TEXT("Hour diff: %f, Minute diff: %f"), HourDelta, MinuteDelta);
 
     if (bHourDone && bMinuteDone)
     {
@@ -147,18 +147,20 @@ void AGrandpopClock_Item_Interactable::SetTargetRotation(float DeltaTime, float 
 
 void AGrandpopClock_Item_Interactable::SetTimeInRotation(int32 Hour, int32 Minute, float& OutHourRotation, float& OutMinuteRotation)
 {
-    OutHourRotation = (Hour % 12 + Minute / 60.0f) * 30.0f;
+    OutHourRotation = Hour * 30.0f;
     OutMinuteRotation = Minute * 6.0f;
+    /*UE_LOG(LogTemp, Warning, TEXT("Hour %d with a Rotation of: %.1f, Minute %d with a Rotation of: %.1f"),
+        Hour, OutHourRotation, Minute, OutMinuteRotation);*/
 }
 
 void AGrandpopClock_Item_Interactable::RepairClock()
 {
     if (PresentWorld)
     {
-        //bShouldRotate = true;
-        SetTimeInRotation(6, 45, FirstTime, SecondTime);
+        bShouldRotate = true;
+        /*SetTimeInRotation(8, 45, FirstTime, SecondTime);
         SmallPointer->SetRelativeRotation(FRotator(FirstTime, 0.f, 0.f));
-        BigPointer->SetRelativeRotation(FRotator(SecondTime, 0.f, 0.f));
+        BigPointer->SetRelativeRotation(FRotator(SecondTime, 0.f, 0.f));*/
         Pendulum->SetVisibility(true);
         Pendulum->SetComponentTickEnabled(true);
         ItemName = "Strange Clock";
