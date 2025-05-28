@@ -13,6 +13,13 @@ UCLASS()
 class UNREAL_GP3_TEAM2_API AItem_Pickup : public AItemBase
 {
 	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item Details")
+	TArray<FInteractionOption> InspectionActions;
+
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE TArray<FInteractionOption> GetUserActions() { return InspectionActions; };
 	
 
 };
