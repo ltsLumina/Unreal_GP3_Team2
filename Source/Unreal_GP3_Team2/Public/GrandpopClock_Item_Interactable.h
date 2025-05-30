@@ -19,6 +19,7 @@ public:
 
     virtual void BeginPlay() override;
     virtual void Tick(float DeltaTime) override;
+    virtual void PostInitializeComponents() override;
 
 protected:
     void UpdatePendulum(float DeltaTime);

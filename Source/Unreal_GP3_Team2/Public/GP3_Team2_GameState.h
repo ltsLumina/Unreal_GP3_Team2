@@ -17,4 +17,7 @@ class UNREAL_GP3_TEAM2_API AGP3_Team2_GameState : public AGameStateBase
 public:
 	UPROPERTY(BlueprintReadWrite, Category = "Doors")
 	TMap<int32, bool> DoorStates;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Objects")
+	FVector MoveAbleObject;
 };

@@ -37,11 +37,6 @@ void AGrandpopClock_Item_Interactable::BeginPlay()
 {
     Super::BeginPlay();
 
-    FString LevelName = GetWorld()->GetMapName();
-    LevelName.RemoveFromStart(GetWorld()->StreamingLevelsPrefix);
-
-    PresentWorld = LevelName.Equals("L_Present_Vecna");
-
     if (PresentWorld)
     {
         Pendulum->SetVisibility(false);
@@ -64,6 +59,32 @@ void AGrandpopClock_Item_Interactable::BeginPlay()
         SwingPeriod / 2.0f,
         true
     );
+}
+void AGrandpopClock_Item_Interactable::PostInitializeComponents()
+{
+    Super::PostInitializeComponents();
+
+    FString CleanName;
+
+    if (ULevel* MyLevel = GetLevel())
+    {
+        FString FullPath = MyLevel->GetOutermost()->GetName();
+        FString ShortName = FPackageName::GetShortName(FullPath);
+        FString StreamingPrefix = GetWorld()->StreamingLevelsPrefix;
+
+        CleanName = ShortName;
+        if (!StreamingPrefix.IsEmpty())
+        {
+            CleanName.RemoveFromStart(StreamingPrefix);
+        }
+
+        UE_LOG(LogTemp, Warning, TEXT("[PostInit] Actor is from level: %s"), *CleanName);
+
+        if (CleanName.Equals(TEXT("L_Present_Vecna")))
+        {
+            PresentWorld = true;
+        }
+    }
 }
 
 void AGrandpopClock_Item_Interactable::Tick(float DeltaTime)
@@ -157,10 +178,10 @@ void AGrandpopClock_Item_Interactable::RepairClock()
 {
     if (PresentWorld)
     {
-        bShouldRotate = true;
-        /*SetTimeInRotation(8, 45, FirstTime, SecondTime);
+        //bShouldRotate = true;
+        SetTimeInRotation(8, 45, FirstTime, SecondTime);
         SmallPointer->SetRelativeRotation(FRotator(FirstTime, 0.f, 0.f));
-        BigPointer->SetRelativeRotation(FRotator(SecondTime, 0.f, 0.f));*/
+        BigPointer->SetRelativeRotation(FRotator(SecondTime, 0.f, 0.f));
         Pendulum->SetVisibility(true);
         Pendulum->SetComponentTickEnabled(true);
         ItemName = "Strange Clock";
