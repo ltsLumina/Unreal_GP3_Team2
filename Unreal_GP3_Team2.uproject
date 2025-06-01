@@ -30,6 +30,10 @@
 		{
 			"Name": "Water",
 			"Enabled": true
+		},
+		{
+			"Name": "EditorDiscordRichPresence",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [
